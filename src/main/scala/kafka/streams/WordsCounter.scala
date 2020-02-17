@@ -11,7 +11,15 @@ import org.apache.kafka.streams.{KafkaStreams, StreamsConfig}
 import org.apache.kafka.streams.scala.Serdes._
 
 object WordsCounter extends App {
+  val props: Properties = {
+    val p = new Properties()
+    p.put(StreamsConfig.APPLICATION_ID_CONFIG, "wordcount-application")
+    p.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092")
+    p
+  }
 
+  private val streamsBuilder = new StreamsBuilder
+  private val textLines: KStream[String, String] = streamsBuilder
     .stream[String, String]("textLinesTopic")
 
   private val wordCounts: KTable[String, Long] = textLines
@@ -21,9 +29,7 @@ object WordsCounter extends App {
 
   wordCounts.toStream.to("WordsWithCountsTopic")
 
-  var props = ???
-
-  private val streams = new KafkaStreams(builder.build(), props)
+  private val streams = new KafkaStreams(streamsBuilder.build(), props)
   streams.start()
 
   sys.ShutdownHookThread {

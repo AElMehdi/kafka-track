@@ -4,7 +4,7 @@ import org.apache.kafka.clients.producer._
 
 object Producer {
   def main(args: Array[String]): Unit = {
-    writeToKafka("quick-start")
+    writeToKafka("textLinesTopic")
   }
 
   def writeToKafka(topic: String): Unit = {
