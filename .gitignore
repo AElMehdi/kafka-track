@@ -89,3 +89,4 @@ fabric.properties
 *.class
 *.log
 
+zk-single-kafka-single/
