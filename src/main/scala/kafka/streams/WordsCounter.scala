@@ -20,14 +20,14 @@ object WordsCounter extends App {
 
   private val streamsBuilder = new StreamsBuilder
   private val textLines: KStream[String, String] = streamsBuilder
-    .stream[String, String]("textLinesTopic")
+    .stream[String, String]("streams-plaintext-input")
 
   private val wordCounts: KTable[String, Long] = textLines
     .flatMapValues(textLine => textLine.toLowerCase().split("\\w+"))
     .groupBy((_, word) => word)
     .count()(Materialized.as("counts-store"))
 
-  wordCounts.toStream.to("WordsWithCountsTopic")
+  wordCounts.toStream.to("streams-plaintext-output")
 
   private val streams = new KafkaStreams(streamsBuilder.build(), props)
   streams.start()
