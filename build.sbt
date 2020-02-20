@@ -8,10 +8,13 @@ lazy val kafkaTrack = (project in file("."))
          name := "kafkaTrack",
          libraryDependencies += "org.apache.kafka" %% "kafka" % "2.1.0",
          libraryDependencies += "org.apache.kafka" %% "kafka-streams-scala" % "2.4.0",
-         libraryDependencies += "org.scalactic" %% "scalactic" % "3.1.0",
-         libraryDependencies += "org.scalatest" %% "scalatest" % "3.1.0" % "test",
-         libraryDependencies += "org.junit.platform" % "junit-platform-runner" % "1.0.0-M3" % "test",
-         libraryDependencies += "org.junit.jupiter" % "junit-jupiter-engine" % "5.0.0-M3" % "test",
-         libraryDependencies += "org.junit.vintage" % "junit-vintage-engine" % "4.12.0-M3" % "test",
          libraryDependencies += "org.slf4j" % "slf4j-log4j12" % "1.7.30",
+         libraryDependencies += "org.scalactic" %% "scalactic" % "3.1.0",
+         libraryDependencies += "org.scalatest" %% "scalatest" % "3.1.0" % Test,
+//         Seems that I don't really need them for now
+//         libraryDependencies += "org.junit.platform" % "junit-platform-runner" % "1.0.0-M3" % Test,
+//         libraryDependencies += "org.junit.jupiter" % "junit-jupiter-engine" % "5.0.0-M3" % Test,
+//         libraryDependencies += "org.junit.vintage" % "junit-vintage-engine" % "4.12.0-M3" % Test,
+         libraryDependencies += "org.apache.kafka" % "kafka-streams-test-utils" % "2.4.0" % Test,
+         libraryDependencies += "org.assertj" % "assertj-core" % "3.15.0" % Test
       )
