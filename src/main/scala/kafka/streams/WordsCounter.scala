@@ -3,12 +3,11 @@ package kafka.streams
 import java.time.Duration
 import java.util.Properties
 
-import org.apache.kafka.streams.kstream.Materialized
 import org.apache.kafka.streams.scala.ImplicitConversions._
+import org.apache.kafka.streams.scala.Serdes._
 import org.apache.kafka.streams.scala.StreamsBuilder
 import org.apache.kafka.streams.scala.kstream.{KStream, KTable}
 import org.apache.kafka.streams.{KafkaStreams, StreamsConfig}
-import org.apache.kafka.streams.scala.Serdes._
 
 object WordsCounter extends App {
   val props: Properties = {
@@ -25,9 +24,10 @@ object WordsCounter extends App {
   private val wordCounts: KTable[String, Long] = textLines
     .flatMapValues(textLine => textLine.toLowerCase().split("\\w+"))
     .groupBy((_, word) => word)
-    .count()(Materialized.as("counts-store"))
+    .count()
+//  (Materialized.as("counts-store"))
 
-  wordCounts.toStream.to("streams-plaintext-output")
+  wordCounts.toStream.to("streams-wordcount-output")
 
   private val streams = new KafkaStreams(streamsBuilder.build(), props)
   streams.start()
