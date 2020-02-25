@@ -1,9 +1,10 @@
+package kafka.producer_consumer
+
+import java.time.Duration.ofSeconds
 import java.util
 import java.util.Properties
-
+import collection.JavaConverters._
 import org.apache.kafka.clients.consumer.KafkaConsumer
-
-import scala.collection.JavaConverters._
 
 object Consumer {
   def main(args: Array[String]): Unit = {
@@ -22,7 +23,7 @@ object Consumer {
     consumer.subscribe(util.Arrays.asList(topic))
 
     while (true) {
-      val record = consumer.poll(1000).asScala
+      val record = consumer.poll(ofSeconds(1)).asScala
       for (data <- record.iterator)
         println("What's going on?" + data.value())
     }
