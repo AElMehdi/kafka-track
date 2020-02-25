@@ -23,4 +23,18 @@ class WordsCounterFeature extends AnyFunSuite with ForAllTestContainer {
 
     Assertions.assertThat(topics.size()).isGreaterThan(0)
   }
+
+  test("Should produce and consume a hello message") {
+    val properties = new Properties()
+    properties.put("bootstrap.servers", container.bootstrapServers)
+    properties.put("group.id", "consumer-tutorial")
+    properties.put("key.deserializer", classOf[StringDeserializer])
+    properties.put("value.deserializer", classOf[StringDeserializer])
+
+
+    val kafkaConsumer = new KafkaConsumer[String, String](properties)
+    val topics = kafkaConsumer.listTopics()
+
+    Assertions.assertThat(topics.size()).isGreaterThan(0)
+  }
 }
