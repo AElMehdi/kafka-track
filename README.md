@@ -1,8 +1,8 @@
 # kafka-track
 
-##Examples:
-###Classic producer/consumer:
-###Streaming:
+## Examples:
+### Classic producer/consumer:
+### Streaming:
 Create input and output topics:
 ```commandline
 kafka-topics --create --topic streams-plaintext-input --zookeeper zoo1:2181 --partitions 1 --replication-factor 1
