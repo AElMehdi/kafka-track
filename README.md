@@ -1,4 +1,5 @@
 # kafka-track
+A collection of `Kafka` code examples around the core APIs: producer/consumer, streaming, Kafka Connect...
 
 ## Examples:
 ### Classic producer/consumer:
