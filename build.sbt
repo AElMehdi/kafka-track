@@ -3,9 +3,9 @@ ThisBuild / scalaVersion := "2.12.10"
 ThisBuild / version := "0.1.0-SNAPSHOT"
 ThisBuild / organization := "com.aelmehdi"
 
-addSbtPlugin("com.tapad" % "sbt-docker-compose" % "1.0.35")
-
-enablePlugins(DockerPlugin, DockerComposePlugin)
+//addSbtPlugin("com.tapad" % "sbt-docker-compose" % "1.0.35")
+//
+////enablePlugins(DockerPlugin, DockerComposePlugin)
 
 //enablePlugins(DockerComposePlugin)
 //dockerImageCreationTask := docker.value
