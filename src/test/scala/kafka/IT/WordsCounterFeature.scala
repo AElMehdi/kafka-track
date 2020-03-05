@@ -50,4 +50,28 @@ class WordsCounterFeature extends AnyFunSuite with ForAllTestContainer {
 
     Assertions.assertThat(records.count()).isGreaterThan(0)
   }
+
+  test("Should create an input topic") {
+    val producerProperties = new Properties()
+    producerProperties.put("bootstrap.servers", container.bootstrapServers)
+    producerProperties.put("key.serializer", classOf[StringSerializer])
+    producerProperties.put("value.serializer", classOf[StringSerializer])
+
+
+    val consumerProperties = new Properties()
+    consumerProperties.put("bootstrap.servers", container.bootstrapServers)
+    consumerProperties.put("group.id", "consumer-tutorial")
+    consumerProperties.put("key.deserializer", classOf[StringDeserializer])
+    consumerProperties.put("value.deserializer", classOf[StringDeserializer])
+
+
+    WordsProducer.writeToKafka("input-topic", producerProperties, "Hello Kafka")
+
+
+
+    val kafkaConsumer = new KafkaConsumer[String, String](consumerProperties)
+    kafkaConsumer.subscribe(Collections.singletonList("input-topic"))
+
+    Assertions.assertThat(kafkaConsumer.listTopics().get("input-topic")).isNotNull
+  }
 }
