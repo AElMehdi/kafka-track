@@ -40,7 +40,7 @@ class WordsCounterFeature extends AnyFunSuite with ForAllTestContainer {
     consumerProperties.put("value.deserializer", classOf[StringDeserializer])
 
 
-    WordsProducer.writeToKafka("input-topic", producerProperties, "Hello Kafka")
+    WordsProducer.createKafkaProducer("input-topic", producerProperties, "Hello Kafka")
 
 
 
@@ -65,7 +65,7 @@ class WordsCounterFeature extends AnyFunSuite with ForAllTestContainer {
     consumerProperties.put("value.deserializer", classOf[StringDeserializer])
 
 
-    WordsProducer.writeToKafka("input-topic", producerProperties, "Hello Kafka")
+    WordsProducer.createKafkaProducer("input-topic", producerProperties, "Hello Kafka")
 
 
 
