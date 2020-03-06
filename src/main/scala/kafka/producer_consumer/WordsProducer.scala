@@ -7,29 +7,26 @@ import org.apache.kafka.common.serialization.StringSerializer
 
 object WordsProducer {
 
-   def main(args: Array[String]): Unit = {
-     val kafkaProducer = createKafkaProducer()
+  def main(args: Array[String]): Unit = {
+    val kafkaProducer = createKafkaProducer()
+    val prompting = true
+    while (prompting) {
+      writeToProducer(kafkaProducer, "quick-start", scala.io.StdIn.readLine())
+    }
 
-      var str = ""
-      val prompting = true
-      while (prompting) {
-         str = scala.io.StdIn.readLine()
-         writeToProducer(kafkaProducer, "quick-start")
-      }
+  }
 
-   }
+  def createKafkaProducer(): KafkaProducer[String, String] = {
+    val config = new Properties()
+    config.put("bootstrap.servers", "localhost:9092")
+    config.put("key.serializer", classOf[StringSerializer])
+    config.put("value.serializer", classOf[StringSerializer])
+    new KafkaProducer[String, String](config)
+  }
 
-   def createKafkaProducer(): KafkaProducer = {
-      val config = new Properties()
-      config.put("bootstrap.servers", "localhost:9092")
-      config.put("key.serializer", classOf[StringSerializer])
-      config.put("value.serializer", classOf[StringSerializer])
-      new KafkaProducer[String, String](config)
-   }
-
-   def writeToProducer(topic: String, message: String): Unit = {
-      val record = new ProducerRecord[String, String](topic, message)
-      producer.send(record)
-      producer.close()
-   }
+  def writeToProducer(kafkaProducer: KafkaProducer[String, String], topic: String, message: String) = {
+    val record = new ProducerRecord[String, String](topic, message)
+    kafkaProducer.send(record)
+    kafkaProducer.flush()
+  }
 }
