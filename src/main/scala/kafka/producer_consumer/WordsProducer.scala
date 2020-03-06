@@ -12,8 +12,6 @@ object WordsProducer {
     producerProperties.put("bootstrap.servers", "localhost:9092")
     producerProperties.put("key.serializer", classOf[StringSerializer])
     producerProperties.put("value.serializer", classOf[StringSerializer])
-    producerProperties.put("listeners", "PLAINTEXT://0.0.0.0:9092")
-    producerProperties.put("advertised.listeners", "PLAINTEXT://my.public.ip:9092")
 
     val str = scala.io.StdIn.readLine()
 

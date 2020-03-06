@@ -16,7 +16,7 @@ object Consumer {
     props.put("bootstrap.servers", "localhost:9092")
     props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer")
     props.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer")
-    props.put("auto.offset.reset", "latest")
+    props.put("auto.offset.reset", "earliest")
     props.put("group.id", "consumer-group")
 
     val consumer: KafkaConsumer[String, String] = new KafkaConsumer[String, String](props)
