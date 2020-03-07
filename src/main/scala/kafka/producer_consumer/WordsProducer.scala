@@ -11,7 +11,7 @@ object WordsProducer {
     val kafkaProducer = createKafkaProducer()
     val prompting = true
     while (prompting) {
-      writeToProducer(kafkaProducer, "quick-start", scala.io.StdIn.readLine())
+      writeToProducer(kafkaProducer, "streams-plaintext-input", scala.io.StdIn.readLine())
     }
 
   }

@@ -3,6 +3,7 @@ package kafka.streams
 import java.time.Duration
 import java.util.Properties
 
+import org.apache.kafka.streams.kstream.Materialized
 import org.apache.kafka.streams.scala.ImplicitConversions._
 import org.apache.kafka.streams.scala.Serdes._
 import org.apache.kafka.streams.scala.StreamsBuilder
@@ -25,7 +26,7 @@ object WordsCounter extends App {
     .flatMapValues(textLine => textLine.toLowerCase().split("\\w+"))
     .groupBy((_, word) => word)
     .count()
-//  (Materialized.as("counts-store"))
+  (Materialized.as("counts-store"))
 
   wordCounts.toStream.to("streams-wordcount-output")
 
