@@ -16,7 +16,7 @@ object WordsProducer {
 
   }
 
-  def createKafkaProducer(): KafkaProducer[String, String] = {
+  def createKafkaProducer():   KafkaProducer[String, String] = {
     val config = new Properties()
     config.put("bootstrap.servers", "localhost:9092")
     config.put("key.serializer", classOf[StringSerializer])

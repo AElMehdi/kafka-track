@@ -18,6 +18,8 @@ object Consumer {
     props.put("bootstrap.servers", "localhost:9092")
     props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer")
     props.put("value.deserializer", "org.apache.kafka.common.serialization.LongDeserializer")
+    props.put("print.key", "true")
+    props.put("formatter", "kafka.tools.DefaultMessageFormatter")
     props.put("auto.offset.reset", "earliest")
     props.put("group.id", "consumer-group")
 
