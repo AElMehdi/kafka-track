@@ -10,6 +10,10 @@ ThisBuild / organization := "com.aelmehdi"
 //enablePlugins(DockerComposePlugin)
 //dockerImageCreationTask := docker.value
 
+resolvers += "Artima Maven Repository" at "http://repo.artima.com/releases"
+
+addSbtPlugin("com.artima.supersafe" % "sbtplugin" % "1.1.3")
+
 lazy val kafkaTrack = (project in file("."))
   .settings(
     name := "kafkaTrack",
