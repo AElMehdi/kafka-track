@@ -1,4 +1,4 @@
-package kafka.producer_consumer
+package kafka.producer
 
 import java.util.Properties
 

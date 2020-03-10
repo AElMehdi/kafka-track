@@ -13,7 +13,6 @@ import org.scalatest.funsuite.AnyFunSuite
 
 import scala.collection.JavaConverters._
 
-
 class WordsCounterShould extends AnyFunSuite {
   var streamsConfig: Properties = {
     val p = new Properties()

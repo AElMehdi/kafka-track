@@ -31,7 +31,7 @@ object WordsCounter extends App {
          .count()
 //   (Materialized.as("counts-store"))
 
-   wordCounts.toStream.to("streams-wordcount-output")(Produced.`with`(Serdes.String, Serdes.Long))
+   wordCounts.toStream.to("streams-wordcount-output")(Produced.`with`(stringSerde, longSerde))
 
    private val streams = new KafkaStreams(streamsBuilder.build(), props)
    streams.start()
