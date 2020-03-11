@@ -17,6 +17,7 @@ addSbtPlugin("com.artima.supersafe" % "sbtplugin" % "1.1.3")
 lazy val kafkaTrack = (project in file("."))
   .settings(
     name := "kafkaTrack",
+    libraryDependencies += "com.typesafe.akka" %% "akka-actor-typed" % "2.6.3",
     libraryDependencies += "org.apache.kafka" %% "kafka" % "2.1.0",
     libraryDependencies += "org.apache.kafka" %% "kafka-streams-scala" % "2.4.0",
     libraryDependencies += "org.slf4j" % "slf4j-log4j12" % "1.7.30",
